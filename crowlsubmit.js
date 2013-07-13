@@ -21,11 +21,11 @@ page.onLoadFinished = function() {
   //console.log("load finished");
 };
 
-var url = "somehost.ru";
+var url = "example.com";
 var div_content_id="container";
 
 var openurl = function (){
-	page.open(url);
+	page.open("http://"+url);
 		return 0;
 }
 var includejs = function(){
@@ -42,9 +42,9 @@ var submit = function(i){
 	page.evaluate(function(i) {
 		var form = $('form:eq('+i+')');
 		$(form).find(":input").each(function(index){
-		
+				
 			if ($(this).attr('name')=='e-mail') {
-				$(this).val('myemail@myhhost.ru');
+				$(this).val('tester@test.test');
 			} 
 			
 			else $(this).val('Test');
@@ -58,11 +58,11 @@ var submit = function(i){
 var output = function(){
 	page.evaluate(function(div_content_id) {
 		//console.log('Output content of page to stdout after form has been submitted');
-		console.log(document.getElementById(div_content).innerText);
-	});	
+		console.log(document.getElementById(div_content_id).innerText);
+	}, div_content_id);	
 }
 var getlinks = function(){
-	return page.evaluate(function(){
+	return page.evaluate(function(url){
 			return Array.prototype.slice.call($('a[href^="/"],[href^="http://www."'+url+'"],[href^="http://"'+url+'"]'), 0)
 			.map(function (link) {
 			return link.getAttribute("href");
