@@ -14,11 +14,9 @@ page.onConsoleMessage = function(msg) {
 };
 page.onLoadStarted = function() {
   loadInProgress = true;
-  //console.log("load started");
 };
 page.onLoadFinished = function() {
   loadInProgress = false;
-  //console.log("load finished");
 };
 
 var url = "example.com";
