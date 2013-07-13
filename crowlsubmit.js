@@ -84,7 +84,7 @@ interval = setInterval(function() {
 		
 		var out='';
 		for (property in formIndex) {
-				console.log (property + ': ' + formIndex[property]+"; \n");
+				
 				out += property + ': ' + formIndex[property]+"; \n";
 		}
 		console.log (out);
