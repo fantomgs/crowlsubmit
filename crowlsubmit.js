@@ -57,7 +57,6 @@ var submit = function(i){
 }
 var output = function(){
 	page.evaluate(function(div_content_id) {
-		//console.log('Output content of page to stdout after form has been submitted');
 		console.log(document.getElementById(div_content_id).innerText);
 	}, div_content_id);	
 }
