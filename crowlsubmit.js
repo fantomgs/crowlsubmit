@@ -43,7 +43,7 @@ var submit = function(i){
 		var form = $('form:eq('+i+')');
 		$(form).find(":input").each(function(index){
 		
-			else if ($(this).attr('name')=='e-mail') {
+			if ($(this).attr('name')=='e-mail') {
 				$(this).val('myemail@myhhost.ru');
 			} 
 			
