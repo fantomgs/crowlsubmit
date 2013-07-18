@@ -13,13 +13,12 @@ if(!Array.prototype.indexOf) {
         return -1;
     };
 }
-var counter=0; 
-var count2= 0;
 var links = [];
 var links_visited={};
 var visited_arr = [];
 var getlinks = function(error, response, body){
 	$ = cheerio.load(body.toString());
+	//searching only this site links
 	$('a[href^="/"],[href^="http://www."'+host+'"],[href^="http://"'+host+'"]').each(function(idx,elem) {
 		var new_link =$(elem).attr('href');
 		if (new_link.substring(0,2)!='//' && new_link.substring(0,8)!='/images/' && !links_visited[new_link])
@@ -36,11 +35,11 @@ var getlinks = function(error, response, body){
 		return;
 	}
 	while (links_visited[link]==1) {
-		if (!(link =  links.pop())) return;
+		if (!(link =  links.pop())) return; //base case
 	}
 	links_visited[link]=1;
 	visited_arr.push(decodeURIComponent(link));
 	if (link.substring(0,1)=='/') link='http://'+host+link;
-	request(link,getlinks);
+	request(link,getlinks); //recursion
 }
 request('http://'+host, getlinks);
